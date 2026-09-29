@@ -1,0 +1,20 @@
+# 1. Inicializa Git en esta carpeta
+git init
+
+# 2. Crea un archivo inicial (obligatorio para poder subir la carpeta si está vacía)
+echo "# Mi Asignatura" > README.md
+
+# 3. Prepara el archivo para guardarlo
+git add .
+
+# 4. Hace el primer guardado en tu computadora
+git commit -m "Primer commit"
+
+# 5. Define tu rama principal como 'main'
+git branch -M main
+
+# 6. Conecta tu computadora con GitHub (PEGA AQUÍ EL ENLACE QUE COPIASTE EN EL PASO 1)
+git remote add origin https://github.com
+
+# 7. Sube tu carpeta a internet por primera vez
+git push -u origin main
