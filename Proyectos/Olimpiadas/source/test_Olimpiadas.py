@@ -31,8 +31,38 @@ def atleta_mayor_peso(registros):
 
     return sorted(registros, key=lambda t:t[3], reverse="true")
     
+def pais_mayor_peso_medio(registros):
 
+    pesos = {}
+
+    for registro in registros:
+
+        pesos.setdefault(registro[2], []).append(float(registro[3]))
+
+    mejor_pais = ""
+    mayor_media = 0
+
+    for pais in pesos:
+
+        media = sum(pesos[pais]) / len(pesos[pais])
+
+        if media > mayor_media:
+
+            mayor_media = media
+            mejor_pais = pais
+
+    return mejor_pais
     
+
+def metodozip(registros:list)->int:
+        lis=[]
+        registros=sorted(registros, key=lambda t:t.edad)
+
+        for a,b in zip(registros,registros[:1]):
+        
+             lis.append(b.edad-a.edad)
+        
+        return max(lis)
 
 
 if __name__ == "__main__":
@@ -48,7 +78,7 @@ if __name__ == "__main__":
     print('\t',num_atletas_por_pais(registros))
 
 
-    print('\t'"Atleta con mayor peso: ")
+    print('\n','\t'"Atleta con mayor peso: ")
 
     atletaMayorPeso=atleta_mayor_peso(registros)[0]
     
