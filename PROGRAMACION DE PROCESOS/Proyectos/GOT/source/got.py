@@ -108,19 +108,48 @@ def reyes_mayor_menor_ejercito(batallas):
     
 def batallas_mas_comandantes(batallas, regiones, n):
 
+    lista_batallas_comandantes=[]
+ 
     if regiones is not None:
 
-        lista_tuplas=regiones_instanciadas(batallas, regiones)
+        lista_batallas_comandantes=lista_tuplas(batallas, regiones)
 
     else:
 
+        regiones=todas_las_regiones(batallas)
+        
+        lista_batallas_comandantes=lista_tuplas(batallas, regiones)
 
-def regiones_instanciadas(batallas, regiones):
+    if n is None or n == 0:
 
-    lista_tuplas=[]
+       return lista_batallas_comandantes
+
+    else:
+
+        lista_batallas_comandantes=sorted(lista_batallas_comandantes, key=lambda t:t[1], reverse=True)[:n]
+
+        return lista_batallas_comandantes
+
+        
+def lista_tuplas(batallas, regiones):
+
+    lista_nombre_batallas=[]
+
 
     for batalla in batallas:
 
-        if batalla.region in batallas:
+        if batalla.region in regiones:
 
-            if batalla.nombre not in()
+            if batalla.nombre not in lista_nombre_batallas:
+
+                lista_nombre_batallas.append((batalla.nombre , (len(batalla.comandantes_atacantes)+len(batalla.comandantes_atacados))))
+
+    
+    return lista_nombre_batallas
+
+
+def todas_las_regiones(batallas):
+
+    lista_regiones=[batalla.region for batalla in batallas]
+
+    return lista_regiones
