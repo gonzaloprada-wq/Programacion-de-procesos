@@ -153,3 +153,52 @@ def todas_las_regiones(batallas):
     lista_regiones=[batalla.region for batalla in batallas]
 
     return lista_regiones
+
+def rey_mas_victorias(batallas, rol_batalla):
+
+    diccionario_batallas=diccionario_reyes_vacio(batallas)
+
+    diccionario_final=rellenar_batallas(batallas, rol_batalla, diccionario_batallas)
+
+    rey_ganador=determinar_rey_mayor(diccionario_final)
+
+    return rey_ganador
+
+def diccionario_reyes_vacio(batallas):
+
+    diccionario_batallas={}
+
+    for batalla in batallas:
+
+        if batalla.rey_atacante not in diccionario_batallas:
+
+            diccionario_batallas[batalla.rey_atacante]=0
+
+        if batalla.rey_atacado not in diccionario_batallas:
+            
+            diccionario_batallas[batalla.rey_atacado]=0
+
+    return diccionario_batallas
+
+def rellenar_batallas(batallas, rol, diccionario_batallas):
+
+    for batalla in batallas:
+
+        if (rol=="atacante" and batalla.gana_atacante) or rol is None:
+
+            diccionario_batallas[batalla.rey_atacante]+=1
+        
+        if (rol=="atacado" and not batalla.gana_atacante) or rol is None:
+
+             diccionario_batallas[batalla.rey_atacado]+=1
+
+    return diccionario_batallas
+
+def determinar_rey_mayor(lista_reyes_victorias):
+
+    rey_ganador = max(lista_reyes_victorias.items(), key=lambda t: t[1])[0]
+
+    return rey_ganador
+
+
+    
